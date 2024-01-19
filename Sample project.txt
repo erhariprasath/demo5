@@ -1,2 +1,3 @@
 To send message
 to receive msg
+add attachments
