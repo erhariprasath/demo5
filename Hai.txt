@@ -1,7 +1,52 @@
-Hai
-hello
-how are you
-I'm fine
-how do you do?
-new line added
-line 7 added
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class NetworkCallExample {
+
+    public static void main(String[] args) {
+        try {
+            // Specify the URL you want to call
+            String urlString = "https://jsonplaceholder.typicode.com/todos/1";
+
+            // Create a URL object
+            URL url = new URL(urlString);
+
+            // Open a connection to the URL
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Set the request method to GET
+            connection.setRequestMethod("GET");
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            // Read the response if the request was successful (HTTP 200 OK)
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder response = new StringBuilder();
+
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+
+                reader.close();
+
+                // Print the response
+                System.out.println("Response:\n" + response.toString());
+            } else {
+                System.out.println("Error: Unable to fetch data");
+            }
+
+            // Close the connection
+            connection.disconnect();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
