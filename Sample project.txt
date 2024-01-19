@@ -1,3 +1,6 @@
 To send message
 to receive msg
 add attachments
+video calls
+send voice and video notes 
+in-app games 
