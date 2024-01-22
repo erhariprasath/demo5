@@ -2,3 +2,4 @@ To send message
 to receive msg
 add attachments
 audio and video call
+gif files added
